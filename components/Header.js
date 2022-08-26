@@ -10,7 +10,7 @@ export default function Header() {
                     <a className="mr-4 p-6">Home</a>
                 </Link>
                 <Link href="/projects">
-                    <a className="mr-4 p-6">Verified Projects</a>
+                    <a className="mr-4 p-6">Tier Collectables</a>
                 </Link>
                 <Link href="/account">
                     <a className="mr-4 p-6">Your Wallet</a>
