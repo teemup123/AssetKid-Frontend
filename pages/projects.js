@@ -47,7 +47,7 @@ export default function Home() {
                             />
                             Creator Address: {creator}. Collection Id: {collectionId}. Token Ids:
                             {` ${tokenIds}`}. Nft Address: {nftAddress}. Gallery Address:
-                            {galleryAddress}.
+                            {galleryAddress}. 
                         </div>
                     )
                 })

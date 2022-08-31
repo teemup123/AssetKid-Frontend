@@ -14,20 +14,41 @@ export default function NftBox(data) {
     const [tokenName, setTokenName ]  = useState("")
     const [tokenDescription, setTokenDescription] = useState("")
 
-    console.log(`tokenId: ${JSON.stringify(data["tokenId"][0])}`)
+    const tokenId = data["tokenId"]
 
     const { runContractFunction: getTokenURI } = useWeb3Contract({
         abi: assetKidNftAbi,
         contractAddress: data["nftAddress"][0],
         functionName: "uri",
         params: {
-            _tokenID: 1, // data["tokenId"][0], // smt wrong with tokenId
+            _tokenID: data["tokenId"][0], 
         },
     })
 
     async function updateUI() {
 
+        const tokenURI_array = []
+
+        console.log(`Getting URI ...`)
+
+        for (let i = 0; i<tokenId.length; i++){
+            let current_id = data["tokenId"][i]
+            if (current_id == 0){
+                break
+            }
+            
+            let current_uri = await getTokenURI()
+            tokenURI_array.push(current_uri)
+            console.log(`TOKEN ID : ${data["tokenId"][i]}`)  
+        }
+
+        for (let i = 0; i<tokenId.length; i++){
+            console.log(`TOKEN URI ID: ${i} : ${tokenURI_array[i]}`)
+        }
+
+        
         const tokenURI = await getTokenURI()
+
         console.log(`URI: ${tokenURI}`)
         // get token URI
         if (tokenURI) {

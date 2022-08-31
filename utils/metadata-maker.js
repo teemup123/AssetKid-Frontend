@@ -18,18 +18,22 @@ function makeFileObjects (obj) {
     return files
   }
 
-async function main (path, name, description) {
+async function main () {
     ////////////////////// web3Storage upload png /////////////////////////
    
-    //let path = "./token_image/bia.png"
+    const collection_name = "Eastern DMT Experience" 
+    const name = "The\ Golden\ Path"
+    const description = "Example decription."
+
+    let path = "./sample_image/EasternDMTExperience/" + name +".png"
     const { cid } = await uploadPath2Web3(path)
     console.log(`cid: ${cid}`)
-    const image = "https://ipfs.io/ipfs/" + cid.toString() + "/bia.png"
-    // const name = "BIA"
-    // const description = "These tokens will mediate the exchange between fractional artwork in our gallery"
+    const image = "https://ipfs.io/ipfs/" + cid.toString() + `/${name}` + ".png"
+    
     ////////////////////// creating a json file /////////////////////////
     const metadata_object = {
         "name" : name,
+        "collection_name": collection_name,
         "description" : description,
         "image" : image,
         "attributes": [
@@ -53,6 +57,7 @@ async function main (path, name, description) {
     const v1 = CID.parse(ipfs_cid)
     const tokenId = "0x"+v1.toString(base16).slice(9)
     console.log(`tokenId: ${tokenId}`) // slice the string and add 0x to create the tokenId
+    console.log("https://ipfs.io/ipfs/" + ipfs_cid+ "/metadata.json")
     ///////////////////////////////////////////////
 }
 
